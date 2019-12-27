@@ -28,11 +28,11 @@ public class Query {
 		QueryParameter parameter=p.parseQuery(queryString);
 		
 		HashMap returnMap=null;
-		if((parameter.getAggregateFunction().size()!=0) && (parameter.getGroupByFields().size()!=0)) {
+		if((parameter.getAggregateFunctions().size()!=0) && (parameter.getGroupByFields().size()!=0)) {
 			CsvGroupByAggregateQueryProcessor csvGroupByAggregateQueryProcessor=new CsvGroupByAggregateQueryProcessor();
 			returnMap=csvGroupByAggregateQueryProcessor.getResultSet(parameter);
 		}
-		else if(parameter.getAggregateFunction().size()!=0) {
+		else if(parameter.getAggregateFunctions().size()!=0) {
 			CsvAggregateQueryProcessor csvAggregateQueryProcessor=new CsvAggregateQueryProcessor();
 			returnMap=csvAggregateQueryProcessor.getResultSet(parameter);
 		}
@@ -45,7 +45,7 @@ public class Query {
 		}
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String result = gson.toJson(returnMap);
-		System.out.println("data set:"+result);
+		//System.out.println("data set:"+result);
 		return returnMap;
 	}
 

@@ -40,7 +40,7 @@ public class CsvGroupByAggregateQueryProcessor implements QueryProcessingEngine 
 		 */
 		
 		
-		String fileName = queryParameter.getFile();
+		String fileName = queryParameter.getFileName();
 		Header headerClass = new Header();
 		RowDataTypeDefinitions rowDataType = new RowDataTypeDefinitions();
 		FileReader file;
@@ -75,8 +75,8 @@ public class CsvGroupByAggregateQueryProcessor implements QueryProcessingEngine 
 		}
 		//headerClass.setHeader(header);
 		
-		System.out.println("---headers----");
-		System.out.println(Arrays.toString(headers));
+	//	System.out.println("---headers----");
+	//	System.out.println(Arrays.toString(headers));
 		
 		//Reading data type and assigning to RowDataTypeDefinition
 		row1 = rows.get(1);
@@ -86,7 +86,7 @@ public class CsvGroupByAggregateQueryProcessor implements QueryProcessingEngine 
 				row1 = row1 + " ";
 			}
 			final String[] data = row1.split(",");
-			System.out.println("row:" + row1);
+		//	System.out.println("row:" + row1);
 
 			for (int i = 0; i < data.length; i++) {
 				
@@ -128,7 +128,7 @@ public class CsvGroupByAggregateQueryProcessor implements QueryProcessingEngine 
 					|| fields.get(m).contains("min") || fields.get(m).contains("count") || fields.get(m).contains("avg")) {
 				
 				String[] split = (fields.get(m).replace("(", " ")).trim().split(" ");
-				System.out.println(split[1].replace(")", "").trim());
+	//			System.out.println(split[1].replace(")", "").trim());
 				fieldVal[m]=split[1].replace(")", "").trim();
 			}
 			else {
@@ -182,7 +182,7 @@ public class CsvGroupByAggregateQueryProcessor implements QueryProcessingEngine 
 			rowCount++;
 			 }
 		}
-		GroupedDataSet groupedDataSet=getgroupedData(dataSet,queryParameter.getAggregateFunction(),headerClass,rowDataType,queryParameter.getGroupByFields());
+		GroupedDataSet groupedDataSet=getgroupedData(dataSet,queryParameter.getAggregateFunctions(),headerClass,rowDataType,queryParameter.getGroupByFields());
 		
 		return groupedDataSet;
 	}

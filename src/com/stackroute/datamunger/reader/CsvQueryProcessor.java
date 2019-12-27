@@ -37,7 +37,7 @@ public class CsvQueryProcessor implements QueryProcessingEngine {
 		 */
 		
 		
-		String fileName = queryParameter.getFile();
+		String fileName = queryParameter.getFileName();
 		Header headerClass = new Header();
 		RowDataTypeDefinitions rowDataType = new RowDataTypeDefinitions();
 		FileReader file;
@@ -72,8 +72,8 @@ public class CsvQueryProcessor implements QueryProcessingEngine {
 		}
 		//headerClass.setHeader(header);
 		
-		System.out.println("---headers----");
-		System.out.println(Arrays.toString(headers));
+	//	System.out.println("---headers----");
+	//	System.out.println(Arrays.toString(headers));
 		
 		//Reading data type and assigning to RowDataTypeDefinition
 		row1 = rows.get(1);
@@ -83,7 +83,7 @@ public class CsvQueryProcessor implements QueryProcessingEngine {
 				row1 = row1 + " ";
 			}
 			final String[] data = row1.split(",");
-			System.out.println("row:" + row1);
+		//	System.out.println("row:" + row1);
 
 			for (int i = 0; i < data.length; i++) {
 				

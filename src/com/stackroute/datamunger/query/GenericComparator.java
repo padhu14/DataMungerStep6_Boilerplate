@@ -26,6 +26,6 @@ public class GenericComparator implements Comparator<Row> {
 			return order*(Integer.compare(Integer.valueOf(o1.get(columnName)),Integer.valueOf(o2.get(columnName))));
 		}
 	}
-	
-		
+
+
 }

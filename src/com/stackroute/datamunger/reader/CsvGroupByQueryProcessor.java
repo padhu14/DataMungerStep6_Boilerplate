@@ -36,7 +36,7 @@ public class CsvGroupByQueryProcessor implements QueryProcessingEngine {
 		 */
 		
 		
-		String fileName = queryParameter.getFile();
+		String fileName = queryParameter.getFileName();
 		Header headerClass = new Header();
 		RowDataTypeDefinitions rowDataType = new RowDataTypeDefinitions();
 		FileReader file;
@@ -71,8 +71,8 @@ public class CsvGroupByQueryProcessor implements QueryProcessingEngine {
 		}
 		//headerClass.setHeader(header);
 		
-		System.out.println("---headers----");
-		System.out.println(Arrays.toString(headers));
+	//	System.out.println("---headers----");
+	//	System.out.println(Arrays.toString(headers));
 		
 		//Reading data type and assigning to RowDataTypeDefinition
 		row1 = rows.get(1);
@@ -82,7 +82,7 @@ public class CsvGroupByQueryProcessor implements QueryProcessingEngine {
 				row1 = row1 + " ";
 			}
 			final String[] data = row1.split(",");
-			System.out.println("row:" + row1);
+		//	System.out.println("row:" + row1);
 
 			for (int i = 0; i < data.length; i++) {
 				
@@ -110,7 +110,7 @@ public class CsvGroupByQueryProcessor implements QueryProcessingEngine {
 			Boolean flag =null;
 			if(queryParameter.getRestrictions()!=null) {
 				if(i==243) {
-					System.out.println("aa");
+				//	System.out.println("aa");
 				}
 			 flag = Filter.filter(queryParameter.getRestrictions(), queryParameter.getLogicalOperators(), row,
 					headerClass,rowDataType);
@@ -154,7 +154,7 @@ public class CsvGroupByQueryProcessor implements QueryProcessingEngine {
 			rowCount++;
 			 }
 		}
-		HashMap<String, HashMap<Long, Row>> groupedHashMap=	getgroupedData(dataSet,queryParameter.getAggregateFunction(),headerClass,rowDataType,queryParameter.getGroupByFields(),rowIndexes);
+		HashMap<String, HashMap<Long, Row>> groupedHashMap=	getgroupedData(dataSet,queryParameter.getAggregateFunctions(),headerClass,rowDataType,queryParameter.getGroupByFields(),rowIndexes);
 		return groupedHashMap;
 	
 		

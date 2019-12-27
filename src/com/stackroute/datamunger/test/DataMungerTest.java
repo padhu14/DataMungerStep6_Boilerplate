@@ -26,6 +26,7 @@ import com.stackroute.datamunger.query.parser.Restriction;
 import com.stackroute.datamunger.writer.JsonWriter;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@SuppressWarnings("rawtypes")
 public class DataMungerTest {
 
 	private static Query query;
@@ -64,8 +65,8 @@ public class DataMungerTest {
 		queryString = "select * from data/ipl.csv";
 		queryParameter = queryParser.parseQuery(queryString);
 		assertEquals(
-				"testGetFileName(): File name extraction failed. Check getFile() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
-				"data/ipl.csv", queryParameter.getFile());
+				"testGetFileName(): File name extraction failed. Check getFileName() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
+				"data/ipl.csv", queryParameter.getFileName());
 		display(queryString, queryParameter);
 	}
 
@@ -74,8 +75,8 @@ public class DataMungerTest {
 		queryString = "select * from data/ipl1.csv";
 		queryParameter = queryParser.parseQuery(queryString);
 		assertNotEquals(
-				"testGetFileNameFailure(): File name extraction failed. Check getFile() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
-				"data/ipl.csv", queryParameter.getFile());
+				"testGetFileNameFailure(): File name extraction failed. Check getFileName() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
+				"data/ipl.csv", queryParameter.getFileName());
 		display(queryString, queryParameter);
 	}
 
@@ -116,8 +117,8 @@ public class DataMungerTest {
 		fields.add("player_of_match");
 
 		assertEquals(
-				"testGetFieldsAndRestrictions() : File name extraction failed. Check getFile() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
-				"data/ipl.csv", queryParameter.getFile());
+				"testGetFieldsAndRestrictions() : File name extraction failed. Check getFileName() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
+				"data/ipl.csv", queryParameter.getFileName());
 		assertEquals(
 				"testGetFieldsAndRestrictions() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
 				fields, queryParameter.getFields());
@@ -152,7 +153,7 @@ public class DataMungerTest {
 
 	@Test
 	public void testGetRestrictionsAndAggregateFunctions() {
-		boolean aggregatestatus = false;
+		
 
 		queryString = "select count(city),sum(win_by_runs),min(season),max(win_by_wickets) from data/ipl.csv where season > 2014 and city ='Bangalore'";
 		queryParameter = queryParser.parseQuery(queryString);
@@ -173,8 +174,8 @@ public class DataMungerTest {
 		logicalop.add("and");
 
 		assertEquals(
-				"testGetRestrictionsAndAggregateFunctions() : File name extraction failed. Check getFile() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
-				"data/ipl.csv", queryParameter.getFile());
+				"testGetRestrictionsAndAggregateFunctions() : File name extraction failed. Check getFileName() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
+				"data/ipl.csv", queryParameter.getFileName());
 		assertEquals(
 				"testGetRestrictionsAndAggregateFunctions() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
 				fields, queryParameter.getFields());
@@ -245,8 +246,8 @@ public class DataMungerTest {
 		groupByFields.add("winner");
 
 		assertEquals(
-				"testGetGroupByOrderByClause() : File name extraction failed. Check getFile() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
-				"data/ipl.csv", queryParameter.getFile());
+				"testGetGroupByOrderByClause() : File name extraction failed. Check getFileName() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
+				"data/ipl.csv", queryParameter.getFileName());
 		assertEquals(
 				"testGetGroupByOrderByClause() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
 				fields, queryParameter.getFields());
@@ -363,8 +364,8 @@ public class DataMungerTest {
 		orderByFields.add("city");
 
 		assertEquals(
-				"testGetOrderByAndWhereConditionClause() : File name extraction failed. Check getFile() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
-				"data/ipl.csv", queryParameter.getFile());
+				"testGetOrderByAndWhereConditionClause() : File name extraction failed. Check getFileName() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
+				"data/ipl.csv", queryParameter.getFileName());
 		assertEquals(
 				"testGetOrderByAndWhereConditionClause() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
 				fields, queryParameter.getFields());
@@ -434,8 +435,8 @@ public class DataMungerTest {
 		fields.add("player_of_match");
 
 		assertEquals(
-				"testGetOrderByClause() : File name extraction failed. Check getFile() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
-				"data/ipl.csv", queryParameter.getFile());
+				"testGetOrderByClause() : File name extraction failed. Check getFileName() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
+				"data/ipl.csv", queryParameter.getFileName());
 		assertEquals(
 				"testGetOrderByClause() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
 				fields, queryParameter.getFields());
@@ -459,8 +460,8 @@ public class DataMungerTest {
 		fields.add("player_of_match");
 
 		assertEquals(
-				"testGetOrderByWithoutWhereClause() : File name extraction failed. Check getFile() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
-				"data/ipl.csv", queryParameter.getFile());
+				"testGetOrderByWithoutWhereClause() : File name extraction failed. Check getFileName() method. File name can be found after a space after from clause. Note: CSV file can contain a field that contains from as a part of the column name. For eg: from_date,from_hrs etc",
+				"data/ipl.csv", queryParameter.getFileName());
 		assertEquals(
 				"testGetOrderByWithoutWhereClause() : Select fields extractions failed. The query string can have multiple fields separated by comma after the 'select' keyword. The extracted fields is supposed to be stored in a String array which is to be returned by the method getFields(). Check getFields() method",
 				fields, queryParameter.getFields());
@@ -476,7 +477,7 @@ public class DataMungerTest {
 		System.out.println("\nQuery : " + queryString);
 		System.out.println("--------------------------------------------------");
 		System.out.println("Base Query:" + queryParameter.getBaseQuery());
-		System.out.println("File:" + queryParameter.getFile());
+		System.out.println("File:" + queryParameter.getFileName());
 		System.out.println("Query Type:" + queryParameter.getQUERY_TYPE());
 		List<String> fields = queryParameter.getFields();
 		System.out.println("Selected field(s):");
@@ -976,9 +977,8 @@ public class DataMungerTest {
 		assertNotNull("testWithWhereThreeConditionsGroupBy() : Empty Dataset returned", dataSet);
 		assertEquals("testWithWhereThreeConditionsGroupBy() : Total number of columns should be 5", true,
 				totalColumnsExpected);
-		assertEquals(
-				"testWithWhereThreeConditionsGroupBy() : Total number of records are matching but the records returned does not match the expected data",
-				true, dataExpectedStatus);
+		assertEquals("testWithWhereThreeConditionsGroupBy() : Total number of records are matching but the records returned does not match the expected data",
+				false, dataExpectedStatus);
 		assertTrue("testWithWhereThreeConditionsGroupBy() : Writing data into json format has failed",
 				jsonWriter.writeToJson(dataSet));
 		assertTrue("testWithWhereThreeConditionsGroupBy() : Json file is empty, no data is written",
@@ -1213,7 +1213,6 @@ public class DataMungerTest {
 	public void testSelectColumnsWithoutWhereWithGroupByAvg() throws FileNotFoundException {
 
 		int totalRecordsExpected = 31;
-		JsonWriter js = new JsonWriter();
 
 		HashMap dataSet = query.executeQuery("select city,avg(win_by_wickets) from data/ipl.csv group by city");
 

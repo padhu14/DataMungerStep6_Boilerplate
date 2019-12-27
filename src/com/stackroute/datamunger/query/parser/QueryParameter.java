@@ -1,7 +1,6 @@
 package com.stackroute.datamunger.query.parser;
 
 import java.util.List;
-import java.util.Map;
 
 /* 
  * This class will contain the elements of the parsed Query String such as conditions,
@@ -10,99 +9,94 @@ import java.util.Map;
  * */
 public class QueryParameter {
 
-	public String file=null;
-	public List<Restriction> restrictions=null;
-	public List<String> logicalOperators=null;
-	public List<String> fields=null;
-	public List<AggregateFunction> aggregateFunction=null;
-	public List<String> groupByFields=null;
-	public List<String> orderByFields=null;
-	public String QUERY_TYPE=null;
-	public String baseQuery=null;
+	private String queryString;
+	private String fileName;
+	private String baseQuery;
+	private List<Restriction> restrictions;
+	private List<String> fields;
+	private String QUERY_TYPE;
+	private List<String> logicalOperators;
+	private List<AggregateFunction> aggregateFunctions;
+	private List<String> orderByFields;
+	private List<String> groupByFields;
 	
-	public List<AggregateFunction> getAggregateFunction() {
-		return aggregateFunction;
+	public QueryParameter() {
+		
 	}
-
-	public void setAggregateFunction(List<AggregateFunction> aggregateFunction) {
-		this.aggregateFunction = aggregateFunction;
-	}
-
-	public String getBaseQuery() {
-		return baseQuery;
-	}
-
-	public void setBaseQuery(String baseQuery) {
+	public QueryParameter(String queryString, String file, String baseQuery, List<Restriction> restrictions,
+			List<String> fields, String qUERY_TYPE, List<String> logicalOperators,
+			List<AggregateFunction> aggregateFunctions, List<String> orderByFields, List<String> groupByFields) {
+		super();
+		this.queryString = queryString;
+		this.fileName = file;
 		this.baseQuery = baseQuery;
-	}
-
-	public List<AggregateFunction> getAggregateFunctions() {
-		return aggregateFunction;
-	}
-
-	public void setAggregateFunctions(List<AggregateFunction> aggregateFunction) {
-		this.aggregateFunction = aggregateFunction;
-	}
-
-	public void setFile(String file) {
-		this.file = file;
-	}
-
-	public void setRestrictions(List<Restriction> restrictions) {
 		this.restrictions = restrictions;
-	}
-
-	public void setLogicalOperators(List<String> logicalOperators) {
-		this.logicalOperators = logicalOperators;
-	}
-
-	public void setFields(List<String> fields) {
 		this.fields = fields;
-	}
-
-	public void setGroupByFields(List<String> groupByFields) {
+		this.QUERY_TYPE = qUERY_TYPE;
+		this.logicalOperators = logicalOperators;
+		this.aggregateFunctions = aggregateFunctions;
+		this.orderByFields = orderByFields;
 		this.groupByFields = groupByFields;
 	}
 
-	public void setOrderByFields(List<String> orderByFields) {
-		this.orderByFields = orderByFields;
+	public String getQueryString() {
+		return queryString;
 	}
-
-	public String getFile() {
-		return file;
+	public void setQueryString(String queryString) {
+		this.queryString = queryString;
 	}
-
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String file) {
+		this.fileName = file;
+	}
+	public String getBaseQuery() {
+		return baseQuery;
+	}
+	public void setBaseQuery(String baseQuery) {
+		this.baseQuery = baseQuery;
+	}
 	public List<Restriction> getRestrictions() {
 		return restrictions;
 	}
-
-	public List<String> getLogicalOperators() {
-		return logicalOperators;
+	public void setRestrictions(List<Restriction> restrictions) {
+		this.restrictions = restrictions;
 	}
-
 	public List<String> getFields() {
 		return fields;
 	}
-
-	public List<String> getGroupByFields() {
-		return groupByFields;
+	public void setFields(List<String> fields) {
+		this.fields = fields;
 	}
-
+	public String getQUERY_TYPE() {
+		return QUERY_TYPE;
+	}
+	public void setQUERY_TYPE(String qUERY_TYPE) {
+		QUERY_TYPE = qUERY_TYPE;
+	}
+	public List<String> getLogicalOperators() {
+		return logicalOperators;
+	}
+	public void setLogicalOperators(List<String> logicalOperators) {
+		this.logicalOperators = logicalOperators;
+	}
+	public List<AggregateFunction> getAggregateFunctions() {
+		return aggregateFunctions;
+	}
+	public void setAggregateFunctions(List<AggregateFunction> aggregateFunctions) {
+		this.aggregateFunctions = aggregateFunctions;
+	}
 	public List<String> getOrderByFields() {
 		return orderByFields;
 	}
-
-
-	public String getQUERY_TYPE() {
-		// TODO Auto-generated method stub
-		return QUERY_TYPE;
+	public void setOrderByFields(List<String> orderByFields) {
+		this.orderByFields = orderByFields;
 	}
-
-	public void  setQUERY_TYPE(String QUERY_TYPE) {
-		// TODO Auto-generated method stub
-		 this.QUERY_TYPE=QUERY_TYPE;
+	public List<String> getGroupByFields() {
+		return groupByFields;
 	}
-		
-
-	
+	public void setGroupByFields(List<String> groupByFields) {
+		this.groupByFields = groupByFields;
+	}
 }

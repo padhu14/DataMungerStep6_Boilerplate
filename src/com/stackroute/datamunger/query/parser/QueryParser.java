@@ -117,8 +117,8 @@ public class QueryParser {
 		for (int i = 0; i < aggregationVal.length; i++) {
 			aggregation[i] = new AggregateFunction();
 			String[] split = (aggregationVal[i].replace("(", " ")).split(" ");
-			System.out.println(split[0]);
-			System.out.println(split[1].replace(")", "").trim());
+	//		System.out.println(split[0]);
+	//		System.out.println(split[1].replace(")", "").trim());
 			
 			aggregation[i].setFunction(split[0]);
 			aggregation[i].setField(split[1].replace(")", "").trim());
@@ -142,7 +142,7 @@ public class QueryParser {
 			orderByFields.add(order);
 		}
 		}
-		queryParameter.setFile(file);
+		queryParameter.setFileName(file);
 		if(restrictions.size()!=0) {
 			queryParameter.setRestrictions(restrictions);
 		}
@@ -173,9 +173,9 @@ public class QueryParser {
 	public static String[] getSplitStrings(String queryString) {
 		//queryString = queryString.toLowerCase();
 		String[] split = queryString.split("\\s+");
-		System.out.println("query strings are:");
+//		System.out.println("query strings are:");
 		for (String s : split) {
-			System.out.println(s);
+	//		System.out.println(s);
 		}
 		return split;
 
@@ -197,7 +197,7 @@ public class QueryParser {
 				file = s;
 			}
 		}
-		System.out.println("file is:" + file);
+//		System.out.println("file is:" + file);
 		return file;
 
 	}
@@ -229,7 +229,7 @@ public class QueryParser {
 		} else {
 			baseQuery = queryString;
 		}
-		System.out.println("base query:" + baseQuery);
+	//	System.out.println("base query:" + baseQuery);
 		return baseQuery;
 	}
 
@@ -254,7 +254,7 @@ public class QueryParser {
 			if (split[1].contains("order")) {
 				conditionalPart = (split[1].split("order by"))[0];
 			}
-			System.out.println("getConditionsPartQuery:" + split[1]);
+	//		System.out.println("getConditionsPartQuery:" + split[1]);
 			return conditionalPart;
 		} else {
 			return null;
@@ -318,7 +318,7 @@ public class QueryParser {
 			for (int i = 0; i < conditions.length; i++) {
 				conditions[i] = conditions[i].trim();
 			}
-			System.out.println("conditions are:" + Arrays.toString(conditions));
+	//		System.out.println("conditions are:" + Arrays.toString(conditions));
 			return conditions;
 
 		} else {
@@ -362,7 +362,7 @@ public class QueryParser {
 		for (int i = 0; i < logicalOp.size(); i++) {
 			logicalOperators[i] = logicalOp.get(i);
 		}
-		System.out.println("logical operators are:" + Arrays.toString(logicalOperators));
+	//	System.out.println("logical operators are:" + Arrays.toString(logicalOperators));
 		if (logicalOperators.length != 0) {
 			return logicalOperators;
 
@@ -389,7 +389,7 @@ public class QueryParser {
 		if (((baseQuery.split("select|from"))[1]).contains(",")) {
 			String[] baseFields = ((baseQuery.split("select|from")[1])).split(",");
 
-			System.out.println("Base fields:" + Arrays.toString(baseFields));
+	//		System.out.println("Base fields:" + Arrays.toString(baseFields));
 			for(int i=0;i<baseFields.length;i++){
 				
 			
@@ -401,7 +401,7 @@ public class QueryParser {
 			String[] baseFields = new String[1];
 			
 			baseFields[0] = ((baseQuery.split("select|from"))[1]).trim();
-			System.out.println("Base fields:" + Arrays.toString(baseFields));
+	//		System.out.println("Base fields:" + Arrays.toString(baseFields));
 			return baseFields;
 		}
 	}
@@ -449,7 +449,7 @@ public class QueryParser {
 			for (int i = 0; i < groupBy.length; i++) {
 				groupBy[i] = groupBy[i].trim();
 			}
-			System.out.println("group by fields are:" + Arrays.toString(groupBy));
+	//		System.out.println("group by fields are:" + Arrays.toString(groupBy));
 			return groupBy;
 		} else {
 			return null;
@@ -484,7 +484,7 @@ public class QueryParser {
 			for(int i=0;i<agFunctions.size();i++) {
 				filteredAg[i]=agFunctions.get(i);
 			}
-			System.out.println("Aggregate functions:" + Arrays.toString(filteredAg));
+		//	System.out.println("Aggregate functions:" + Arrays.toString(filteredAg));
 			return filteredAg;
 		}else {
 			return null;
